@@ -1,0 +1,32 @@
+﻿@page "/contacts"
+
+@using BlazingChat.Shared
+@inject NavigationManager NavigationManager
+
+@if (contacts == null)
+{
+	<p><em>Loading...</em></p>
+}
+else
+{
+	<div class="col-12">
+		 @foreach(var contact in contacts)
+		{
+			<a class="list-group-item list-group-item-action flex-flex-column align-items-start" 
+			href="/chat/@contact.Id">@contact.Name</a><br/>
+		}
+	</div>
+}
+
+@code {
+	private List<Contact> contacts;
+
+	protected override async Task OnInitializedAsync()
+	{
+		contacts = new List<Contact>()
+		{
+			new Contact() {Id = 1, Name = "Rahul"} ,
+			new Contact() {Id = 2, Name = "Supriya"}
+		};
+	}
+}
